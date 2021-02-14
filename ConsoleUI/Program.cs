@@ -274,7 +274,7 @@ namespace ConsoleUI
             int carId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"\n\nId'si {carId} olan araba: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
             Car carById = carManager.GetById(carId).Data;
-            Console.WriteLine($"{carById.CarId}\t{colorManager.GetById(carById.ColorId).ColorName}\t\t{brandManager.GetById(carById.BrandId).BrandName}\t\t{carById.ModelYear}\t\t{carById.DailyPrice}\t\t{carById.Descriptions}");
+           // Console.WriteLine($"{carById.CarId}\t{colorManager.GetById(carById.ColorId).ColorName}\t\t{brandManager.GetById(carById.BrandId).BrandName}\t\t{carById.ModelYear}\t\t{carById.DailyPrice}\t\t{carById.Descriptions}");
         }
 
         private static void CarListByColor(CarManager carManager)
@@ -377,18 +377,18 @@ namespace ConsoleUI
 
         private static void GetAllBrand(BrandManager brandManager)
         {
-            foreach (var brand in brandManager.GetAll())
-            {
-                Console.WriteLine($"{brand.BrandId}\t{brand.BrandName}");
-            }
+            //foreach (var brand in brandManager.GetAll())
+            //{
+            //    Console.WriteLine($"{brand.BrandId}\t{brand.BrandName}");
+            //}
         }
 
         private static void GetAllColor(ColorManager colorManager)
         {
-            foreach (var color in colorManager.GetAll())
-            {
-                Console.WriteLine($"{color.ColorId}\t{color.ColorName}");
-            }
+            //foreach (var color in colorManager.GetAll())
+            //{
+            //    Console.WriteLine($"{color.ColorId}\t{color.ColorName}");
+            //}
         }
     }
 }
