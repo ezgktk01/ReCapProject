@@ -11,9 +11,7 @@ namespace Business.ValidationRules.FluentValidation
         public CarValidator()
         {
             RuleFor(c=>c.BrandId).NotEmpty();
-            RuleFor(c=>c.CarId).NotEmpty();
             RuleFor(c=>c.DailyPrice).GreaterThan(0);
-            RuleFor(c=>c.ModelYear).NotEmpty();
             RuleFor(c=>c.Descriptions).NotEmpty();
         }
     }
