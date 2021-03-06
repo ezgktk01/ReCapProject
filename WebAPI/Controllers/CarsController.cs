@@ -56,5 +56,15 @@ namespace WebAPI.Controllers
             if (result.Success) { return Ok(result); }
             return BadRequest();
         }
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Car car)
+        {
+            var result = _carService.TransactionTest(car);
+            if (result.Success)
+            {
+                return Ok(car);
+            }
+            return BadRequest(result);
+        }
     }
 }

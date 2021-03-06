@@ -118,7 +118,7 @@ namespace ConsoleUI
                         CarByModelYear(carManager, brandManager, colorManager);
                         break;
                     case 11:
-                        GetAllUserList(userManager);
+                        //GetAllUserList(userManager);
                         CustomerAddition(customerManager);
                         break;
                     case 12:
@@ -128,7 +128,7 @@ namespace ConsoleUI
                         UserAddition(userManager);
                         break;
                     case 14:
-                        GetAllUserList(userManager);
+                        //GetAllUserList(userManager);
                         break;
                     case 15:
                         GetAllCarDetails(carManager);
@@ -200,15 +200,15 @@ namespace ConsoleUI
             string userPasswordForAdd = Console.ReadLine();
 
 
-            User userForAdd = new User
-            {
-                FirstName = userNameForAdd,
-                LastName = userSurnameForAdd,
-                Email = userEmailForAdd,
-                Password = userPasswordForAdd
+            //User userForAdd = new User
+            //{
+            //    FirstName = userNameForAdd,
+            //    LastName = userSurnameForAdd,
+            //    Email = userEmailForAdd,
+            //    Password = userPasswordForAdd
 
-            };
-            userManager.Add(userForAdd);
+            //};
+            //userManager.Add(userForAdd);
         }
 
         private static void GetAllCustomerList(CustomerManager customerManager)
@@ -236,14 +236,14 @@ namespace ConsoleUI
             customerManager.Add(customerForAdd);
         }
 
-        private static void GetAllUserList(UserManager userManager)
-        {
-            Console.WriteLine("Kullanıcı Listesi: \nId\tFirst Name\tLast Name\tEmail\tPassword");
-            foreach (var user in userManager.GetAll().Data)
-            {
-                Console.WriteLine($"{user.UserId}\t{user.FirstName}\t{user.LastName}\t{user.Password}");
-            }
-        }
+        //private static void GetAllUserList(UserManager userManager)
+        //{
+        //    Console.WriteLine("Kullanıcı Listesi: \nId\tFirst Name\tLast Name\tEmail\tPassword");
+        //    foreach (var user in userManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine($"{user.UserId}\t{user.FirstName}\t{user.LastName}\t{user.Password}");
+        //    }
+        //}
 
         private static void CarByModelYear(CarManager carManager, BrandManager brandManager, ColorManager colorManager)
         {
