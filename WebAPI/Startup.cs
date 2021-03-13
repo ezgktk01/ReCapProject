@@ -51,6 +51,8 @@ namespace WebAPI
             //services.AddSingleton<IRentalDal, EfRentalDal>();
             //services.AddSingleton<IUserDal, EfUserDal>();
 
+            services.AddCors();//CORS hatasý için eklendi.
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -80,6 +82,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());//Bu url den gelen her isteðe izin ver demek.(CORS için eklendi)
 
             app.UseHttpsRedirection();
 
