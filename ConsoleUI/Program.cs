@@ -152,22 +152,22 @@ namespace ConsoleUI
         private static void GetAllRentalDetailList(RentalManager rentalManager)
         {
             Console.WriteLine("Kiralanan Arabalar Listesi: \nId\tCar Name\tCustomer Name\tRent Date\tReturn Date");
-            foreach (var rental in rentalManager.GetRentalDetails().Data)
-            {
-                Console.WriteLine($"{rental.RentalId}\t{rental.CarName}\t{rental.CustomerName}\t{rental.RentDate}\t{rental.ReturnDate}");
-            }
+            //foreach (var rental in rentalManager.GetRentalDetails().Data)
+            //{
+            //    Console.WriteLine($"{rental.RentalId}\t{rental.CarName}\t{rental.CustomerName}\t{rental.RentDate}\t{rental.ReturnDate}");
+            //}
         }
 
         private static void ReturnRental(RentalManager rentalManager)
         {
             Console.WriteLine("Kiraladığınız araba hangi Car Id'ye sahip?");
             int carId = Convert.ToInt32(Console.ReadLine());
-            var returnedRental = rentalManager.GetRentalDetails(I => I.CarId == carId);
-            foreach (var rental in returnedRental.Data)
-            {
-                rental.ReturnDate = DateTime.Now;
-                Console.WriteLine(returnedRental.Message);
-            }
+           // var returnedRental = rentalManager.GetRentalDetail(I => I.CarId == carId);
+            //foreach (var rental in returnedRental.Data)
+            //{
+            //    rental.ReturnDate = DateTime.Now;
+            //    Console.WriteLine(returnedRental.Message);
+            //}
         }
 
         private static void RentalAddition(RentalManager rentalManager)

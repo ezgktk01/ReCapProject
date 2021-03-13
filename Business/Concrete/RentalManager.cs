@@ -2,6 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,12 +26,16 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate == null && _rentalDal.GetCarDetails(r => r.CarId == rental.CarId).Count > 0)
+            IResult result = BusinessRules.Run(ChechIfCarReturnDate(rental));
+            if (result != null)
             {
-                return new ErrorResult(Messages.FailedRental);
+                return result;
             }
-            _rentalDal.Add(rental);
-            return new SuccessResult(Messages.AddedRental);
+            else
+            {
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.AddedRental);
+            }
         }
 
         public IResult Delete(Rental rental)
@@ -49,9 +54,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.RentalId == id));
         }
 
-        public IDataResult<List<RentalDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
+        public IDataResult<List<RentalDetailDto>> GetRentalDetail()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetCarDetails(filter));
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetail());
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -59,6 +64,15 @@ namespace Business.Concrete
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.UpdatedRental);
+        }
+        private IResult ChechIfCarReturnDate(Rental rental)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null);
+            if (result.Count > 0)
+            {
+                return new ErrorResult(Messages.FailedRental);
+            }
+            return new SuccessResult();
         }
     }
 }
