@@ -40,5 +40,6 @@ namespace Business.Constants
         public static string UpdatedCarImage = "Araba için yüklenilen resim başarıyla güncellendi.";
         public static string FailedCarImageAdd = "Bir araba 5'den fazla resme sahip olamaz.";
         public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string CarListed= "Arabalar listelendi";
     }
 }
